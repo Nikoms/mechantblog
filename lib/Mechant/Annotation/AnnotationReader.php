@@ -10,14 +10,16 @@
 namespace Mechant\Annotation;
 
 
-class AnnotationReader {
+class AnnotationReader
+{
 
     private $reflection;
 
     /**
      * @param \ReflectionClass $argument Instance ou nom de classe
      */
-    public function __construct($argument){
+    public function __construct($argument)
+    {
         $this->reflection = new \ReflectionClass($argument);
     }
 
@@ -26,7 +28,8 @@ class AnnotationReader {
      * @param mixed $value
      * @return array
      */
-    public function filterMethod($key, $value){
+    public function filterMethod($key, $value)
+    {
         $return = array();
 
         return $return;

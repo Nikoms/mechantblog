@@ -10,7 +10,8 @@
 namespace Mechant\Annotation;
 
 
-class ReflectionClass {
+class ReflectionClass
+{
 
     /**
      * @var \ReflectionClass
@@ -25,17 +26,19 @@ class ReflectionClass {
     /**
      * @param mixed $argument
      */
-    public function __construct($argument){
+    public function __construct($argument)
+    {
         $this->reflection = new \ReflectionClass($argument);
     }
 
     /**
      * @return ReflectionMethod[]
      */
-    private function getMethods(){
-        if($this->methods === null){
+    private function getMethods()
+    {
+        if ($this->methods === null) {
             $this->methods = array();
-            foreach($this->reflection->getMethods() as $method){
+            foreach ($this->reflection->getMethods() as $method) {
                 $this->methods[] = new ReflectionMethod($method);
             }
             return $this->methods;

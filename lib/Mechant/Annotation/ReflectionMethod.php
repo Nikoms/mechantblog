@@ -10,7 +10,8 @@
 namespace Mechant\Annotation;
 
 
-class ReflectionMethod {
+class ReflectionMethod
+{
 
     /**
      * @var \ReflectionMethod
@@ -20,7 +21,8 @@ class ReflectionMethod {
     /**
      * @param \ReflectionMethod $reflectionMethod
      */
-    public function __construct(\ReflectionMethod $reflectionMethod){
+    public function __construct(\ReflectionMethod $reflectionMethod)
+    {
         $this->reflection = $reflectionMethod;
     }
 }
