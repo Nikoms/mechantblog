@@ -13,14 +13,17 @@ namespace Mechant\Annotation;
 class AnnotationReader
 {
 
+    /**
+     * @var ReflectionClass
+     */
     private $reflection;
 
     /**
-     * @param \ReflectionClass $argument Instance ou nom de classe
+     * @param mixed $argument Instance ou nom de classe
      */
     public function __construct($argument)
     {
-        $this->reflection = new \ReflectionClass($argument);
+        $this->reflection = new ReflectionClass($argument);
     }
 
     /**
@@ -30,8 +33,13 @@ class AnnotationReader
      */
     public function filterMethod($key, $value)
     {
-        $return = array();
+        $methods = array();
+        foreach ($this->reflection->getMethods() as $method) {
+            if (in_array($value, $method->getAnnotation($key))) {
+                $methods[] = $method;
+            }
+        }
 
-        return $return;
+        return $methods;
     }
 }

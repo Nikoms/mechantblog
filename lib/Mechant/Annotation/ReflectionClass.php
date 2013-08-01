@@ -21,7 +21,7 @@ class ReflectionClass
     /**
      * @var ReflectionMethod[]
      */
-    private $methods = array();
+    private $methods;
 
     /**
      * @param mixed $argument
@@ -34,14 +34,14 @@ class ReflectionClass
     /**
      * @return ReflectionMethod[]
      */
-    private function getMethods()
+    public function getMethods()
     {
         if ($this->methods === null) {
             $this->methods = array();
             foreach ($this->reflection->getMethods() as $method) {
                 $this->methods[] = new ReflectionMethod($method);
             }
-            return $this->methods;
         }
+        return $this->methods;
     }
 }
