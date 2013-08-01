@@ -10,13 +10,9 @@
 namespace Mechant\Annotation;
 
 
-class ReflectionClass
+class ReflectionClass extends \ReflectionClass
 {
 
-    /**
-     * @var \ReflectionClass
-     */
-    private $reflection;
 
     /**
      * @var ReflectionMethod[]
@@ -28,7 +24,7 @@ class ReflectionClass
      */
     public function __construct($argument)
     {
-        $this->reflection = new \ReflectionClass($argument);
+        parent::__construct($argument);
     }
 
     /**
@@ -38,8 +34,8 @@ class ReflectionClass
     {
         if ($this->methods === null) {
             $this->methods = array();
-            foreach ($this->reflection->getMethods() as $method) {
-                $this->methods[] = new ReflectionMethod($method);
+            foreach (parent::getMethods() as $method) {
+                $this->methods[] = new ReflectionMethod($method->getDeclaringClass()->getName(), $method->getName());
             }
         }
         return $this->methods;

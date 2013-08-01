@@ -10,13 +10,8 @@
 namespace Mechant\Annotation;
 
 
-class ReflectionMethod extends Reflection
+class ReflectionMethod extends \ReflectionMethod
 {
-
-    /**
-     * @var \ReflectionMethod
-     */
-    private $reflection;
 
     /**
      * @var array
@@ -24,11 +19,12 @@ class ReflectionMethod extends Reflection
     private $annotations;
 
     /**
-     * @param \ReflectionMethod $reflectionMethod
+     * @param mixed $class
+     * @param string $name
      */
-    public function __construct(\ReflectionMethod $reflectionMethod)
+    public function __construct($class, $name)
     {
-        $this->reflection = $reflectionMethod;
+        parent::__construct($class, $name);
         $this->init();
     }
 
@@ -36,7 +32,7 @@ class ReflectionMethod extends Reflection
     {
 
         $this->annotations = array();
-        if (preg_match_all('/@([\w]+)\s+([\w]*)/', $this->reflection->getDocComment(), $matches)) {
+        if (preg_match_all('/@([\w]+)\s+([\w]*)/', $this->getDocComment(), $matches)) {
             foreach ($matches[1] as $id => $key) {
                 if (!isset($this->annotations[$key])) {
                     $this->annotations[$key] = array();
@@ -66,11 +62,4 @@ class ReflectionMethod extends Reflection
 
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->reflection->getName();
-    }
 }
