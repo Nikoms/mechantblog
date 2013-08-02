@@ -30,17 +30,20 @@ class ReflectionMethod extends \ReflectionMethod
 
     private function init()
     {
+        //Only parenthese: (@\w+)\s+(\()(.*?)(\))
+        //rapide : (@\w+)\s+(.*)
 
         $this->annotations = array();
-        if (preg_match_all('/@([\w]+)\s+([\w]*)/', $this->getDocComment(), $matches)) {
+        if (preg_match_all('/@(\w+)\s+(.*)/', $this->getDocComment(), $matches)) {
             foreach ($matches[1] as $id => $key) {
                 if (!isset($this->annotations[$key])) {
                     $this->annotations[$key] = array();
                 }
-                $this->annotations[$key][] = $matches[2][$id];
+                //J'enlève les parenthèses et les espaces avant/après
+                $this->annotations[$key][] = trim(trim($matches[2][$id]),')( ');
             }
         }
-
+        print_R($this->annotations);
     }
 
     /**

@@ -14,10 +14,11 @@ class Example
 {
 
     /**
-     * @test 1
-     * @test    2
-     * @test  3
-     * @go go1
+     * @test (1)
+     * @test  (  2,2bis)
+     * @test ( 3)
+     * @test 4
+     * @go (go1)
      */
     public function testMethod1()
     {
@@ -33,7 +34,7 @@ class Example
     }
 
     /**
-     * @go 1
+     * @go (1)
      */
     public function testMethod3()
     {
@@ -41,7 +42,7 @@ class Example
     }
 
     /**
-     * @test            1
+     * @test  ( 1 )
      */
     public function testMethod4()
     {
@@ -50,7 +51,7 @@ class Example
 
 
     /**
-     * @test
+     * @test(lol)
      * 1
      */
     public function testMethod5()
