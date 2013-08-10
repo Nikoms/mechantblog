@@ -58,4 +58,14 @@ class Example
     {
 
     }
+
+
+    /**
+     * @json {ok:"D'accord"}
+     * 1
+     */
+    public function testJSon()
+    {
+
+    }
 }
