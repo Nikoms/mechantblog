@@ -7,18 +7,20 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace AbstractFactory\Classes\Citroen;
+namespace Creation\Common\Voiture\Occasion;
 
-class VoitureRapide extends Voiture
+
+use Creation\Common\Voiture\VoitureRapide;
+
+class VoitureRapideOccasion extends VoitureRapide
 {
-
     function getVitesseMax()
     {
-        return 140;
+        return 120;
     }
 
     function getResistance()
     {
-        return 60;
+        return 40;
     }
 }

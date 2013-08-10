@@ -7,19 +7,21 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace AbstractFactory\Classes;
+namespace Creation\Common\Voiture\Occasion;
 
 
-abstract class VoitureRapide extends Voiture
+use Creation\Common\Voiture\VoitureToutTerrain;
+
+class VoitureToutTerrainOccasion extends VoitureToutTerrain
 {
     function getVitesseMax()
     {
-        return 150;
+        return 80;
     }
 
     function getResistance()
     {
-        return 50;
+        return 150;
     }
 
 }

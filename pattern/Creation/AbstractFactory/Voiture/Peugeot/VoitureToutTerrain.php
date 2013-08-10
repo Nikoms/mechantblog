@@ -7,18 +7,18 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace FactoryMethod\Classes;
+namespace Creation\AbstractFactory\Voiture\Peugeot;
 
-
-class VoitureRapide extends Voiture
+class VoitureToutTerrain extends \Creation\Common\Voiture\VoitureToutTerrain
 {
+
     function getVitesseMax()
     {
-        return 150;
+        return parent::getVitesseMax()+10;
     }
 
     function getResistance()
     {
-        return 50;
+        return parent::getResistance()-10;
     }
 }

@@ -7,18 +7,18 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace AbstractFactory\Classes\Citroen;
+namespace Creation\Common\Voiture;
 
-class VoitureToutTerrain extends Voiture
+
+class VoitureRapide extends Voiture
 {
-
     function getVitesseMax()
     {
-        return 90;
+        return 150;
     }
 
     function getResistance()
     {
-        return 210;
+        return 50;
     }
 }

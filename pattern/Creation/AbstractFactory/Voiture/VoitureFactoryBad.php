@@ -7,11 +7,22 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace AbstractFactory\Classes;
+namespace Creation\AbstractFactory\Voiture;
 
+
+use Creation\AbstractFactory\Voiture\Citroen\RoueCitroen;
+use Creation\AbstractFactory\Voiture\Peugeot\RouePeugeot;
+use Creation\Common\Voiture\PareChocs;
+use Creation\Common\Voiture\Roue;
 
 class VoitureFactoryBad
 {
+    /**
+     * @param $marque
+     * @param $type
+     * @return Voiture
+     * @throws \Exception
+     */
     static public function create($marque, $type)
     {
         $voiture = null;
@@ -22,15 +33,15 @@ class VoitureFactoryBad
                     throw new \Exception('Nop');
                     break;
                 case '4x4':
-                    $voiture = new \AbstractFactory\Classes\Peugeot\VoitureToutTerrain();
+                    $voiture = new \Creation\AbstractFactory\Voiture\Peugeot\VoitureToutTerrain();
                     break;
                 case 'course':
-                    $voiture = new \AbstractFactory\Classes\Peugeot\VoitureRapide();
+                    $voiture = new \Creation\AbstractFactory\Voiture\Peugeot\VoitureRapide();
                     break;
             }
-
+            //Les parechocs de peugeot sont moins résistants
             $voiture->setParChocs(new PareChocs(40));
-            $voiture->setRoues(new Roue());
+            $voiture->setRoues(new RouePeugeot());
 
         } else {
             if ($marque === 'citroen') {
@@ -39,15 +50,16 @@ class VoitureFactoryBad
                         throw new \Exception('Nop');
                         break;
                     case '4x4':
-                        $voiture = new \AbstractFactory\Classes\Citroen\VoitureToutTerrain();
+                        $voiture = new \Creation\AbstractFactory\Voiture\Citroen\VoitureToutTerrain();
                         break;
                     case 'course':
-                        $voiture = new \AbstractFactory\Classes\Citroen\VoitureRapide();
+                        $voiture = new \Creation\AbstractFactory\Voiture\Citroen\VoitureRapide();
                         break;
                 }
 
+                //Les parechocs de peugeot sont moins résistants
                 $voiture->setParChocs(new PareChocs(60));
-                $voiture->setRoues(new Roue());
+                $voiture->setRoues(new RoueCitroen());
 
             }
         }

@@ -7,11 +7,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace FactoryMethod\Classes;
+namespace Creation\Common\Voiture;
 
 
 class Roue
 {
-    public $used = 0;
+    public $life = 100;
+
+    public function __construct(){
+    }
 
 }

@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace AbstractFactory\Classes;
+namespace Creation\Common\Voiture;
 
 
 class PareChocs
@@ -19,4 +19,5 @@ class PareChocs
     {
         $this->tauxAbsorption = $tauxAbsorption;
     }
+
 }

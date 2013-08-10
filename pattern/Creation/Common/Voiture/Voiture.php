@@ -1,8 +1,9 @@
 <?php
-namespace FactoryMethod\Classes;
+namespace Creation\Common\Voiture;
 
 abstract class Voiture
 {
+
 
     private $vitesse = 0;
     private $vie = 100;
@@ -15,9 +16,15 @@ abstract class Voiture
      */
     public $pareChocs;
 
-    abstract function getVitesseMax();
+    abstract public function getVitesseMax();
 
-    abstract function getResistance();
+    abstract public function getResistance();
+
+
+    public function __construct()
+    {
+        //Rien à faire dans le construct, on va quelqu'un va devoir builder notre voiture "petit à petit"
+    }
 
     public function setRoues(Roue $roue)
     {
@@ -31,7 +38,7 @@ abstract class Voiture
 
     public function avance()
     {
-        $this->roues->used++;
+        $this->roues->life--;
     }
 
     public function accelere()
