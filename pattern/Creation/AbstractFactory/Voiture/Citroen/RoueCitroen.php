@@ -12,9 +12,11 @@ namespace Creation\AbstractFactory\Voiture\Citroen;
 
 use Creation\Common\Voiture\Roue;
 
-class RoueCitroen extends Roue{
+class RoueCitroen extends Roue
+{
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
         $this->life *= 1.2;
     }

@@ -18,7 +18,6 @@ abstract class AVoitureFactory
     abstract protected function initParChocs(Voiture $voiture);
 
 
-
     public function createVoiture($type)
     {
         switch ($type) {

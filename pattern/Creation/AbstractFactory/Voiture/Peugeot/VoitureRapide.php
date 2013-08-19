@@ -13,11 +13,11 @@ class VoitureRapide extends \Creation\Common\Voiture\VoitureRapide
 {
     function getVitesseMax()
     {
-        return parent::getVitesseMax()+10;
+        return parent::getVitesseMax() + 10;
     }
 
     function getResistance()
     {
-        return parent::getResistance()-10;
+        return parent::getResistance() - 10;
     }
 }

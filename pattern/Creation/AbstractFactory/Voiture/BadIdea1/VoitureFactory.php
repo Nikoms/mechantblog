@@ -7,19 +7,18 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace Creation\AbstractFactory\Voiture;
+namespace Creation\AbstractFactory\Voiture\BadIdea1;
 
 
 use Creation\AbstractFactory\Voiture\Citroen\RoueCitroen;
 use Creation\AbstractFactory\Voiture\Peugeot\RouePeugeot;
 use Creation\Common\Voiture\PareChocs;
-use Creation\Common\Voiture\Roue;
 
-class VoitureFactoryBad
+class VoitureFactory
 {
     /**
-     * @param $marque
-     * @param $type
+     * @param string $marque
+     * @param string $type
      * @return Voiture
      * @throws \Exception
      */
@@ -41,7 +40,6 @@ class VoitureFactoryBad
             }
             //Les parechocs de peugeot sont moins résistants
             $voiture->setParChocs(new PareChocs(40));
-            $voiture->setRoues(new RouePeugeot());
 
         } else {
             if ($marque === 'citroen') {
@@ -57,13 +55,29 @@ class VoitureFactoryBad
                         break;
                 }
 
-                //Les parechocs de peugeot sont moins résistants
+                //Les parechocs de citroen sont plus résistants
                 $voiture->setParChocs(new PareChocs(60));
-                $voiture->setRoues(new RoueCitroen());
 
             }
         }
 
+        //Youpie du code en commun!
+        $voiture->setRoues(self::createRoue($marque));
+
         return $voiture;
+    }
+
+    /**
+     * On veut pouvoir donner des roues "en standalone" selon la marque de voiture... Lors du ravitaillement par exemple
+     * @param string $marque
+     * @return RoueCitroen|RouePeugeot
+     */
+    static public function createRoue($marque)
+    {
+        if ($marque === 'peugeot') {
+            return new RouePeugeot();
+        } else {
+            return new RoueCitroen();
+        }
     }
 }

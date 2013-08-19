@@ -3,12 +3,20 @@
 include '../../autoload.php';
 
 //Old school
-var_dump(\Creation\AbstractFactory\Voiture\VoitureFactoryBad::create('peugeot', '4x4'));
-var_dump(\Creation\AbstractFactory\Voiture\VoitureFactoryBad::create('peugeot', 'course'));
+var_dump(\Creation\AbstractFactory\Voiture\BadIdea1\VoitureFactory::create('peugeot', '4x4'));
+var_dump(\Creation\AbstractFactory\Voiture\BadIdea1\VoitureFactory::create('peugeot', 'course'));
 
 
-var_dump(\Creation\AbstractFactory\Voiture\VoitureFactoryBad::create('citroen', '4x4'));
-var_dump(\Creation\AbstractFactory\Voiture\VoitureFactoryBad::create('citroen', 'course'));
+var_dump(\Creation\AbstractFactory\Voiture\BadIdea1\VoitureFactory::create('citroen', '4x4'));
+var_dump(\Creation\AbstractFactory\Voiture\BadIdea1\VoitureFactory::create('citroen', 'course'));
+
+
+echo '<hr />';
+//Avec le pattern Method Factory
+
+
+var_dump(\Creation\AbstractFactory\Voiture\BadIdea2\VoitureCitroenFactory::create('4x4'));
+var_dump(\Creation\AbstractFactory\Voiture\BadIdea2\VoiturePeugeotFactory::create('4x4'));
 
 echo '<hr />';
 

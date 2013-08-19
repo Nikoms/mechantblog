@@ -14,7 +14,8 @@ class Roue
 {
     public $life = 100;
 
-    public function __construct(){
+    public function __construct()
+    {
     }
 
 }
