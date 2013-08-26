@@ -38,7 +38,6 @@ abstract class Voiture
     }
 
 
-
     public function setRoues(Roue $roue)
     {
         $this->roues = $roue;

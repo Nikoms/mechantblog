@@ -6,15 +6,18 @@
 namespace Creation\Builder\Voiture;
 
 
-class Director {
+class Director
+{
 
     private $voitureBuilder;
 
-    public function __construct(VoitureBuilder $voitureBuilder){
+    public function __construct(VoitureBuilder $voitureBuilder)
+    {
         $this->voitureBuilder = $voitureBuilder;
     }
 
-    public function getVoiture(){
+    public function getVoiture()
+    {
         $this->voitureBuilder->buildMarque();
         $this->voitureBuilder->buildPareChocs();
         $this->voitureBuilder->buildResistance();

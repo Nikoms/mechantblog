@@ -8,7 +8,8 @@ namespace Creation\Builder\Voiture\PimpMyRide\PareChocs;
 
 use Creation\Common\Voiture\PareChocs;
 
-class PareChocsMamouth extends PareChocs{
+class PareChocsMamouth extends PareChocs
+{
 
     public function __construct()
     {

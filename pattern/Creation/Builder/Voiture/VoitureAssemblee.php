@@ -10,7 +10,8 @@ namespace Creation\Builder\Voiture;
 
 use Creation\Common\Voiture\Voiture;
 
-class VoitureAssemblee extends Voiture{
+class VoitureAssemblee extends Voiture
+{
 
     private $vitesseMax;
     private $resistance;
@@ -34,7 +35,6 @@ class VoitureAssemblee extends Voiture{
     {
         return $this->resistance;
     }
-
 
 
 }

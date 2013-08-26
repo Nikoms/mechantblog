@@ -6,7 +6,8 @@
 namespace Creation\Builder\Voiture;
 
 
-class VoitureBuilderFullCustom extends VoitureBuilder{
+class VoitureBuilderFullCustom extends VoitureBuilder
+{
 
     private $resistance;
     private $vitesseMax;
@@ -68,8 +69,6 @@ class VoitureBuilderFullCustom extends VoitureBuilder{
         $this->vitesseMax = $vitesseMax;
         return $this;
     }
-
-
 
 
 }

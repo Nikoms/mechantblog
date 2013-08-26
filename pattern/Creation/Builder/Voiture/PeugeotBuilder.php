@@ -8,7 +8,8 @@ namespace Creation\Builder\Voiture;
 use Creation\AbstractFactory\Voiture\Peugeot\RouePeugeot;
 use Creation\Common\Voiture\PareChocs;
 
-class PeugeotBuilder extends VoitureBuilder{
+class PeugeotBuilder extends VoitureBuilder
+{
     public function buildResistance()
     {
         $this->voiture->setResistance(120);
