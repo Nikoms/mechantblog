@@ -24,14 +24,4 @@ class VoitureOccasionV2Factory extends VoitureFactory
     }
 
 
-    /**
-     * Les parechocs d'occasion absorbe deux fois moins bien
-     * @param $tauxAbsorption
-     * @return PareChocs
-     */
-    static protected function createPareChocs($tauxAbsorption)
-    {
-        return new PareChocs($tauxAbsorption / 2);
-    }
-
 }

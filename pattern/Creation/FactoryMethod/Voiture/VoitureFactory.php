@@ -36,34 +36,18 @@ class VoitureFactory extends AVoitureFactory
                 break;
         }
 
-        return static::construit($voiture);
+        return static::build($voiture);
     }
 
-    static protected function construit(Voiture $voiture)
+    static protected function build(Voiture $voiture)
     {
 
         //Les voitures ont toutes un taux d'absorption de 50
-        $voiture->setParChocs(static::createPareChocs(50));
+        $voiture->setParChocs(new PareChocs(50));
         //Les voitures ont toutes des les mêmes roues
-        $voiture->setRoues(static::createRoue());
+        $voiture->setRoues(new Roue());
 
         return $voiture;
     }
 
-    /**
-     * @param $tauxAbsorption
-     * @return PareChocs
-     */
-    static protected function createPareChocs($tauxAbsorption)
-    {
-        return new PareChocs($tauxAbsorption);
-    }
-
-    /**
-     * @return Roue
-     */
-    static protected function createRoue()
-    {
-        return new Roue();
-    }
 }

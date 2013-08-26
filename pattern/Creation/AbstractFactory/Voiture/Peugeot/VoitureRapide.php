@@ -11,6 +11,12 @@ namespace Creation\AbstractFactory\Voiture\Peugeot;
 
 class VoitureRapide extends \Creation\Common\Voiture\VoitureRapide
 {
+
+    public function __construct(){
+        parent::__construct();
+        $this->setMarque('Peugeot');
+    }
+
     function getVitesseMax()
     {
         return parent::getVitesseMax() + 10;

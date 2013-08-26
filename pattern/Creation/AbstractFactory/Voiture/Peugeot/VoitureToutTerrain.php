@@ -12,6 +12,11 @@ namespace Creation\AbstractFactory\Voiture\Peugeot;
 class VoitureToutTerrain extends \Creation\Common\Voiture\VoitureToutTerrain
 {
 
+    public function __construct(){
+        parent::__construct();
+        $this->setMarque('Peugeot');
+    }
+
     function getVitesseMax()
     {
         return parent::getVitesseMax() + 10;

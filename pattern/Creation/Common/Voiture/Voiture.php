@@ -4,6 +4,7 @@ namespace Creation\Common\Voiture;
 abstract class Voiture
 {
 
+    private $marque = 'Blanche';
 
     private $vitesse = 0;
     private $vie = 100;
@@ -25,6 +26,18 @@ abstract class Voiture
     {
         //Rien à faire dans le construct, on va quelqu'un va devoir builder notre voiture "petit à petit"
     }
+
+    public function setMarque($marque)
+    {
+        $this->marque = $marque;
+    }
+
+    public function getMarque()
+    {
+        return $this->marque;
+    }
+
+
 
     public function setRoues(Roue $roue)
     {

@@ -12,6 +12,11 @@ namespace Creation\AbstractFactory\Voiture\Citroen;
 class VoitureToutTerrain extends \Creation\Common\Voiture\VoitureToutTerrain
 {
 
+    public function __construct(){
+        parent::__construct();
+        $this->setMarque('Citroen');
+    }
+
     function getVitesseMax()
     {
         return parent::getVitesseMax() - 10;
