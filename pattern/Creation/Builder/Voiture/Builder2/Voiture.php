@@ -27,12 +27,12 @@ class Voiture extends VoitureBasic
 
     public function getVitesseMax()
     {
-        // TODO: Implement getVitesseMax() method.
+        return $this->vitesseMax;
     }
 
     public function getResistance()
     {
-        // TODO: Implement getResistance() method.
+        return $this->resistance;
     }
 
     /**
