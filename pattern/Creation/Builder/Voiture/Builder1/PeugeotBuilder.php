@@ -3,7 +3,7 @@
  * @author Nicolas De Boose
  */
 
-namespace Creation\Builder\Voiture;
+namespace Creation\Builder\Voiture\Builder1;
 
 use Creation\AbstractFactory\Voiture\Peugeot\RouePeugeot;
 use Creation\Common\Voiture\PareChocs;

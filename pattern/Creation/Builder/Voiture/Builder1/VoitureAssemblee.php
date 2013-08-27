@@ -5,7 +5,7 @@
  * Time: 23:29
  */
 
-namespace Creation\Builder\Voiture;
+namespace Creation\Builder\Voiture\Builder1;
 
 
 use Creation\Common\Voiture\Voiture;

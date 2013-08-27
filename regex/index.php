@@ -35,22 +35,24 @@ $string = "ab,c,dd=(some,text,cool=(aaa(b(c1)(c2)d)e)(test) more text)";
 /*
  * Analyses the string multidimensionally by its opening and closing delimiters
  */
-function recursiveSplit($string, $pattern, $layer) {
+function recursiveSplit($string, $pattern, $layer)
+{
     $resultI = 3;
-    preg_match_all($pattern,$string,$matches);
+    preg_match_all($pattern, $string, $matches);
     // iterate thru matches and continue recursive split
     if (count($matches) > 1) {
         for ($i = 0; $i < count($matches[$resultI]); $i++) {
             if (is_string($matches[$resultI][$i])) {
                 if (strlen($matches[$resultI][$i]) > 0) {
-                    echo "<pre>Layer ".$layer.":   ".$matches[$resultI][$i]."</pre><br />";
+                    echo "<pre>Layer " . $layer . ":   " . $matches[$resultI][$i] . "</pre><br />";
                     recursiveSplit($matches[$resultI][$i], $pattern, $layer + 1);
                 }
             }
         }
     }
 }
-$regex =  "/
+
+$regex = "/
 
 
 (?:(\w+)=|)
@@ -68,7 +70,6 @@ $regex =  "/
 
 regexOutput($regex, $string);
 recursiveSplit($string, $regex, 0);
-
 
 
 exit();
@@ -174,15 +175,13 @@ regexOutput($pcre_regex, $json);
 //\Z 	=>  Matches at the end of the string the regex pattern is applied to. Matches a position rather than a character. Never matches before line breaks, except for the very last line break if the string ends with a line break. Ex: .\Z matches f in abc\ndef
 
 
-
-
 exit();
 
 
-
-function regexOutput($pattern, $string){
+function regexOutput($pattern, $string)
+{
     preg_match_all($pattern, $string, $matches);
-    echo '<pre>'.var_export($matches,true).'</pre>';
+    echo '<pre>' . var_export($matches, true) . '</pre>';
 }
 
 $regex1 = '/(?=\d{10})\d{5}/'; //Positive lookahead : Je prend les 5 premiers(!!) chiffres si il y en a bien 10 en tout. Il n'y aura pas de groupe pour les 10 chiffres
@@ -202,12 +201,9 @@ $string3 = 'theme'; //theatre = pas trouvé
 regexOutput($regex3, $string3);
 
 
-
-
 $regex2 = '/(?<=\d)cat/'; //Positive lookbehind : Je prend cat, s'il y a bien un chiffre avant. Il n'y aura pas de group pour le chiffre trouvé devant cat
 $string2 = '2cat';
 regexOutput($regex2, $string2);
-
 
 
 $regex4 = '/\w{3}(?<!mon)ster/'; //Negative lookbehind1 : 3 lettres, mais pas "mon", suivit de "ster"
@@ -231,7 +227,6 @@ $string = 'Bob says: Bonjour'; //"Bob says: " est pris en compte dans la regex, 
 regexOutput($regex, $string);
 
 
-
 //CONDITIONNAL ?()
 
 $regex = '/(?:(\()|-)\d{6}(?(1)\))/'; // (?:(\()|-) = Soit une parenthèse ouvrante, soit un -. \d{6} = 6 digits. (?(1)\) = Si la condition 1 est remplie alors, il faut qu'il y ai une parenthèse fermante
@@ -242,7 +237,6 @@ $string = '-222222';
 regexOutput($regex, $string);
 
 
-
 //Atomic group : (? >\d+) Autre explications à trouver, car c'est pas juste ca "An atomic group is an expression that becomes solid as a block once the regex leaves the closing parenthesis"
 $regex = '/(?>\d+)/'; //catch les chiffres mais ne les captures pas
 $string = 'j ai mangé 666   666 lapins ce soir avec 2 souris';
@@ -251,12 +245,12 @@ regexOutput($regex, $string);
 
 //Racourcis, pour ne plus utiliser \1\2\3
 $regex = '/(?P<my_age>\d\d)/'; //On aura word dans le tableau $matches + on peut utiliser \word à la place de \1
-$string="I am 25 years old. ";
+$string = "I am 25 years old. ";
 regexOutput($regex, $string);
 
 //Commentaires dans la regex
 $regex = '/(?#doit contenir bubble)bubble/'; //On a des commentaires dans notre regex pour mieux aider le dev
-$string="puzzle bubble";
+$string = "puzzle bubble";
 regexOutput($regex, $string);
 
 
@@ -264,7 +258,7 @@ regexOutput($regex, $string);
 $regex = '/(?i)bob DIT BONJOUR/'; //Trouve "Bob dit bonjour",... Alors que j'ai pas mis de /i au bout :)
 $regex = '/((?i)bob) dit bonjour/'; //Trouve Bob, et le capture... Alors que j'ai pas mis de /i au bout :) le ?i est juste pour bob, pas pour le "dit bonjour"
 $regex = "/(?i:bob) dit bonjour/"; //Ca marche aussi avec les "non capturantes". Ex: (?i:bob). Ici ca ne capture pas Bob, mais ca le trouve
-$string="Bob dit bonjour à BIB";
+$string = "Bob dit bonjour à BIB";
 regexOutput($regex, $string);
 
 //Attention ca ne marche pas avec:
@@ -286,18 +280,16 @@ regexOutput($regex, $string);
 //exit();
 
 
-
-
-
-
-$subjects=array('dontmatchme','kook','book','paper','kayak','okonoko','aaaaa','bbbb');
-$pattern='/(\w)(?:(?R)|\w?)\1/';
+$subjects = array('dontmatchme', 'kook', 'book', 'paper', 'kayak', 'okonoko', 'aaaaa', 'bbbb');
+$pattern = '/(\w)(?:(?R)|\w?)\1/';
 foreach ($subjects as $sub) {
-    echo $sub." ".str_repeat('-',15-strlen($sub))."-> ";
-    if (preg_match($pattern,$sub,$match)) echo $match[0]."<br />";
-    else echo 'sorry, no match<br />';
+    echo $sub . " " . str_repeat('-', 15 - strlen($sub)) . "-> ";
+    if (preg_match($pattern, $sub, $match)) {
+        echo $match[0] . "<br />";
+    } else {
+        echo 'sorry, no match<br />';
+    }
 }
-
 
 
 exit();

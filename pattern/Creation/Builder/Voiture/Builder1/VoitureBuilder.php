@@ -1,9 +1,7 @@
 <?php
 
-namespace Creation\Builder\Voiture;
+namespace Creation\Builder\Voiture\Builder1;
 
-use Creation\Common\Voiture\PareChocs;
-use Creation\Common\Voiture\Roue;
 
 abstract class VoitureBuilder
 {

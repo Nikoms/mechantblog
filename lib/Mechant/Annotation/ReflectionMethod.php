@@ -40,7 +40,7 @@ class ReflectionMethod extends \ReflectionMethod
                     $this->annotations[$key] = array();
                 }
                 //J'enlève les parenthèses et les espaces avant/après
-                $this->annotations[$key][] = trim(trim($matches[2][$id]),')( ');
+                $this->annotations[$key][] = trim(trim($matches[2][$id]), ')( ');
             }
         }
         print_R($this->annotations);

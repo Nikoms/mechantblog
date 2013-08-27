@@ -8,380 +8,361 @@
 <script src="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css"></script>
 <script>
 
-    var mouseEvents = [];
-    var xpath = new Xpather();
-    var record = true;
+var mouseEvents = [];
+var xpath = new Xpather();
+var record = true;
 
 
-    function setRecord(recording){
-        document.getElementById('recording').innerHTML = recording ? 'ON' : 'OFF';
-        record = recording;
+function setRecord(recording) {
+    document.getElementById('recording').innerHTML = recording ? 'ON' : 'OFF';
+    record = recording;
+}
+
+window.onbeforeunload = function (e) {
+    var e = e || window.event;
+
+    // For IE and Firefox
+    if (e) {
+        //e.returnValue = 'Any string';
     }
 
-    window.onbeforeunload = function (e) {
-        var e = e || window.event;
+    // For Safari
+    //return 'Any string';
+};
 
-        // For IE and Firefox
-        if (e) {
-            //e.returnValue = 'Any string';
-        }
+function addRecord(event, store) {
+    if (!record) {
+        return;
+    }
 
-        // For Safari
-        //return 'Any string';
+    var obj = {
+        type: event.type,
+        x: event.pageX,
+        y: event.pageY,
+        store: store,
+        time: Date.now()
     };
 
-    function addRecord(event, store){
-        if(!record){
-            return;
-        }
+    mouseEvents.push(obj);
+}
 
-        var obj = {
-            type: event.type,
-            x: event.pageX,
-            y: event.pageY,
-            store: store,
-            time: Date.now()
-        };
-
-        mouseEvents.push(obj);
-    }
-
-    $(function(){
-        $(document).on('mousemove', function(event) {
-            addRecord(event);
-
-        });
-        $('#view').on('click',function(event){
-            showMouseEvents();
-        });
-        $('#replay').on('click',function(event){
-            setRecord(false);
-            replayMouse(0);
-        });
-        $('#init').on('click',function(event){
-            initMouseEvents();
-        });
-        //Peu importe sur quoi on click, on track!
-        $(document).on('click.tracker', function(event){
-            //Stop la suite du click
-            event.stopPropagation();
-            if(event.target.className.indexOf('no-record') !== -1){
-                return false;
-            }
-            var $element = $(event.target);
-            addRecord(event, {
-                xpath:xpath.getElementXPath(event.target),
-                isChecked: $element.is(':checked')
-            });
-        });
-        $(document).on('change.tracker', function(event){
-            //Stop la suite du click
-            event.stopPropagation();
-
-            if(event.target.className.indexOf('no-record') !== -1){
-                return false;
-            }
-            addRecord(event, {
-                xpath: xpath.getElementXPath(event.target),
-                value: event.target.value
-            });
-        });
+$(function () {
+    $(document).on('mousemove', function (event) {
+        addRecord(event);
 
     });
-
-
-
-    function showMouseEvents(){
-        var msg = '';
-        var total = mouseEvents.length;
-        for(var i = 0; i < total ; i++){
-            msg += mouseEvents[i].type + ':' + mouseEvents[i].x+'/'+mouseEvents[i].y+' - '+(mouseEvents[i].time/1000)+'<br />';
-        }
-        $("#log").html(msg);
-
+    $('#view').on('click', function (event) {
+        showMouseEvents();
+    });
+    $('#replay').on('click', function (event) {
+        setRecord(false);
+        replayMouse(0);
+    });
+    $('#init').on('click', function (event) {
         initMouseEvents();
-    }
-
-    function replayMouse(eventIndice){
-        var $mouse = $('#mouse');
-        $mouse.css({
-            left: mouseEvents[eventIndice].x,
-            top: mouseEvents[eventIndice].y
+    });
+    //Peu importe sur quoi on click, on track!
+    $(document).on('click.tracker', function (event) {
+        //Stop la suite du click
+        event.stopPropagation();
+        if (event.target.className.indexOf('no-record') !== -1) {
+            return false;
+        }
+        var $element = $(event.target);
+        addRecord(event, {
+            xpath: xpath.getElementXPath(event.target),
+            isChecked: $element.is(':checked')
         });
+    });
+    $(document).on('change.tracker', function (event) {
+        //Stop la suite du click
+        event.stopPropagation();
 
-        if(mouseEvents[eventIndice].type != 'mousemove'){
-            //hide de la souris, sinon on aura le div "mouse" à la coordonnée :)
-            $mouse.hide();
-            var $elementXY = $(document.elementFromPoint(mouseEvents[eventIndice].x, mouseEvents[eventIndice].y));
-            var $element = $(getElementByXPath(mouseEvents[eventIndice].store.xpath));
-            $mouse.show();
-            $element.effect( 'highlight', {}, 1000);
+        if (event.target.className.indexOf('no-record') !== -1) {
+            return false;
+        }
+        addRecord(event, {
+            xpath: xpath.getElementXPath(event.target),
+            value: event.target.value
+        });
+    });
 
-            var doTrigger = true;
-            if(mouseEvents[eventIndice].type === 'click'){
-                //si c'est une checkbox, on la décheck avant de la checker... Et inversement :)
-                if($element.is(':checkbox')){
-                    $element.attr('checked', !mouseEvents[eventIndice].store.isChecked);
-                }
-            }else if(mouseEvents[eventIndice].type === 'change'){
-                $element.val(mouseEvents[eventIndice].store.value);
-                //TODO: comment appeler le onchange du html?
+});
+
+
+function showMouseEvents() {
+    var msg = '';
+    var total = mouseEvents.length;
+    for (var i = 0; i < total; i++) {
+        msg += mouseEvents[i].type + ':' + mouseEvents[i].x + '/' + mouseEvents[i].y + ' - ' + (mouseEvents[i].time / 1000) + '<br />';
+    }
+    $("#log").html(msg);
+
+    initMouseEvents();
+}
+
+function replayMouse(eventIndice) {
+    var $mouse = $('#mouse');
+    $mouse.css({
+        left: mouseEvents[eventIndice].x,
+        top: mouseEvents[eventIndice].y
+    });
+
+    if (mouseEvents[eventIndice].type != 'mousemove') {
+        //hide de la souris, sinon on aura le div "mouse" à la coordonnée :)
+        $mouse.hide();
+        var $elementXY = $(document.elementFromPoint(mouseEvents[eventIndice].x, mouseEvents[eventIndice].y));
+        var $element = $(getElementByXPath(mouseEvents[eventIndice].store.xpath));
+        $mouse.show();
+        $element.effect('highlight', {}, 1000);
+
+        var doTrigger = true;
+        if (mouseEvents[eventIndice].type === 'click') {
+            //si c'est une checkbox, on la décheck avant de la checker... Et inversement :)
+            if ($element.is(':checkbox')) {
+                $element.attr('checked', !mouseEvents[eventIndice].store.isChecked);
             }
-
-            if(doTrigger){
-                var event = jQuery.Event(mouseEvents[eventIndice].type);
-                $element.trigger(event);
-            }
+        } else if (mouseEvents[eventIndice].type === 'change') {
+            $element.val(mouseEvents[eventIndice].store.value);
+            //TODO: comment appeler le onchange du html?
         }
 
-
-        var nextEventIndice = eventIndice + 1;
-
-        if(mouseEvents.length != nextEventIndice){
-            setTimeout(function(){
-                replayMouse(nextEventIndice);
-            }, mouseEvents[nextEventIndice].time - mouseEvents[eventIndice].time);
-        }else{
-            //On a fini de rejouer, on met le mode record à true :)
-            setRecord(true);
+        if (doTrigger) {
+            var event = jQuery.Event(mouseEvents[eventIndice].type);
+            $element.trigger(event);
         }
     }
-    function initMouseEvents(){
-        mouseEvents.length = 0;
+
+
+    var nextEventIndice = eventIndice + 1;
+
+    if (mouseEvents.length != nextEventIndice) {
+        setTimeout(function () {
+            replayMouse(nextEventIndice);
+        }, mouseEvents[nextEventIndice].time - mouseEvents[eventIndice].time);
+    } else {
+        //On a fini de rejouer, on met le mode record à true :)
+        setRecord(true);
     }
+}
+function initMouseEvents() {
+    mouseEvents.length = 0;
+}
 
 
+var getElementByXPath = function (path) {
+    result = document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+    return result.singleNodeValue;
+};
 
-    var getElementByXPath = function (path) {
-        result = document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-        return result.singleNodeValue;
+
+function Xpather() {
+
+    /**
+     * Gets an XPath for an element which describes its hierarchical location.
+     */
+    this.getElementXPath = function (element) {
+        if (element && element.id)
+            return '//*[@id="' + element.id + '"]';
+        else
+            return this.getElementTreeXPath(element);
     };
 
+    this.getElementTreeXPath = function (element) {
+        var paths = [];
 
-    function Xpather(){
+        // Use nodeName (instead of localName) so namespace prefix is included (if any).
+        for (; element && element.nodeType == 1; element = element.parentNode) {
+            var index = 0;
+            for (var sibling = element.previousSibling; sibling; sibling = sibling.previousSibling) {
+                // Ignore document type declaration.
+                if (sibling.nodeType == Node.DOCUMENT_TYPE_NODE)
+                    continue;
 
-        /**
-         * Gets an XPath for an element which describes its hierarchical location.
-         */
-        this.getElementXPath = function(element)
-        {
-            if (element && element.id)
-                return '//*[@id="' + element.id + '"]';
-            else
-                return this.getElementTreeXPath(element);
-        };
-
-        this.getElementTreeXPath = function(element)
-        {
-            var paths = [];
-
-            // Use nodeName (instead of localName) so namespace prefix is included (if any).
-            for (; element && element.nodeType == 1; element = element.parentNode)
-            {
-                var index = 0;
-                for (var sibling = element.previousSibling; sibling; sibling = sibling.previousSibling)
-                {
-                    // Ignore document type declaration.
-                    if (sibling.nodeType == Node.DOCUMENT_TYPE_NODE)
-                        continue;
-
-                    if (sibling.nodeName == element.nodeName)
-                        ++index;
-                }
-
-                var tagName = element.nodeName.toLowerCase();
-                var pathIndex = (index ? "[" + (index+1) + "]" : "");
-                paths.splice(0, 0, tagName + pathIndex);
+                if (sibling.nodeName == element.nodeName)
+                    ++index;
             }
 
-            return paths.length ? "/" + paths.join("/") : null;
-        };
+            var tagName = element.nodeName.toLowerCase();
+            var pathIndex = (index ? "[" + (index + 1) + "]" : "");
+            paths.splice(0, 0, tagName + pathIndex);
+        }
 
-        this.getElementCSSPath = function(element)
-        {
-            var paths = [];
+        return paths.length ? "/" + paths.join("/") : null;
+    };
 
-            for (; element && element.nodeType == 1; element = element.parentNode)
-            {
-                var selector = this.getElementCSSSelector(element);
-                paths.splice(0, 0, selector);
-            }
+    this.getElementCSSPath = function (element) {
+        var paths = [];
 
-            return paths.length ? paths.join(" ") : null;
-        };
+        for (; element && element.nodeType == 1; element = element.parentNode) {
+            var selector = this.getElementCSSSelector(element);
+            paths.splice(0, 0, selector);
+        }
 
-        this.cssToXPath = function(rule)
-        {
-            var regElement = /^([#.]?)([a-z0-9\\*_-]*)((\|)([a-z0-9\\*_-]*))?/i;
-            var regAttr1 = /^\[([^\]]*)\]/i;
-            var regAttr2 = /^\[\s*([^~=\s]+)\s*(~?=)\s*"([^"]+)"\s*\]/i;
-            var regPseudo = /^:([a-z_-])+/i;
-            var regCombinator = /^(\s*[>+\s])?/i;
-            var regComma = /^\s*,/i;
+        return paths.length ? paths.join(" ") : null;
+    };
 
-            var index = 1;
-            var parts = ["//", "*"];
-            var lastRule = null;
+    this.cssToXPath = function (rule) {
+        var regElement = /^([#.]?)([a-z0-9\\*_-]*)((\|)([a-z0-9\\*_-]*))?/i;
+        var regAttr1 = /^\[([^\]]*)\]/i;
+        var regAttr2 = /^\[\s*([^~=\s]+)\s*(~?=)\s*"([^"]+)"\s*\]/i;
+        var regPseudo = /^:([a-z_-])+/i;
+        var regCombinator = /^(\s*[>+\s])?/i;
+        var regComma = /^\s*,/i;
 
-            while (rule.length && rule != lastRule)
-            {
-                lastRule = rule;
+        var index = 1;
+        var parts = ["//", "*"];
+        var lastRule = null;
 
-                   // Trim leading whitespace
-                rule = this.trim(rule);
-                if (!rule.length)
-                    break;
+        while (rule.length && rule != lastRule) {
+            lastRule = rule;
 
-                // Match the element identifier
-                var m = regElement.exec(rule);
-                if (m)
-                {
-                    if (!m[1])
-                    {
-                        // XXXjoe Namespace ignored for now
-                        if (m[5])
-                            parts[index] = m[5];
-                        else
-                            parts[index] = m[2];
-                    }
-                    else if (m[1] == '#')
-                        parts.push("[@id='" + m[2] + "']");
-                    else if (m[1] == '.')
-                        parts.push("[contains(concat(' ',normalize-space(@class),' '), ' " + m[2] + " ')]");
+            // Trim leading whitespace
+            rule = this.trim(rule);
+            if (!rule.length)
+                break;
 
-                    rule = rule.substr(m[0].length);
-                }
-
-                // Match attribute selectors
-                m = regAttr2.exec(rule);
-                if (m)
-                {
-                    if (m[2] == "~=")
-                        parts.push("[contains(@" + m[1] + ", '" + m[3] + "')]");
+            // Match the element identifier
+            var m = regElement.exec(rule);
+            if (m) {
+                if (!m[1]) {
+                    // XXXjoe Namespace ignored for now
+                    if (m[5])
+                        parts[index] = m[5];
                     else
-                        parts.push("[@" + m[1] + "='" + m[3] + "']");
-
-                    rule = rule.substr(m[0].length);
+                        parts[index] = m[2];
                 }
+                else if (m[1] == '#')
+                    parts.push("[@id='" + m[2] + "']");
+                else if (m[1] == '.')
+                    parts.push("[contains(concat(' ',normalize-space(@class),' '), ' " + m[2] + " ')]");
+
+                rule = rule.substr(m[0].length);
+            }
+
+            // Match attribute selectors
+            m = regAttr2.exec(rule);
+            if (m) {
+                if (m[2] == "~=")
+                    parts.push("[contains(@" + m[1] + ", '" + m[3] + "')]");
                 else
-                {
-                    m = regAttr1.exec(rule);
-                    if (m)
-                    {
-                        parts.push("[@" + m[1] + "]");
-                        rule = rule.substr(m[0].length);
-                    }
-                }
+                    parts.push("[@" + m[1] + "='" + m[3] + "']");
 
-                // Skip over pseudo-classes and pseudo-elements, which are of no use to us
+                rule = rule.substr(m[0].length);
+            }
+            else {
+                m = regAttr1.exec(rule);
+                if (m) {
+                    parts.push("[@" + m[1] + "]");
+                    rule = rule.substr(m[0].length);
+                }
+            }
+
+            // Skip over pseudo-classes and pseudo-elements, which are of no use to us
+            m = regPseudo.exec(rule);
+            while (m) {
+                rule = rule.substr(m[0].length);
                 m = regPseudo.exec(rule);
-                while (m)
-                {
-                    rule = rule.substr(m[0].length);
-                    m = regPseudo.exec(rule);
-                }
-
-                // Match combinators
-                m = regCombinator.exec(rule);
-                if (m && m[0].length)
-                {
-                    if (m[0].indexOf(">") != -1)
-                        parts.push("/");
-                    else if (m[0].indexOf("+") != -1)
-                        parts.push("/following-sibling::");
-                    else
-                        parts.push("//");
-
-                    index = parts.length;
-                    parts.push("*");
-                    rule = rule.substr(m[0].length);
-                }
-
-                m = regComma.exec(rule);
-                if (m)
-                {
-                    parts.push(" | ", "//", "*");
-                    index = parts.length-1;
-                    rule = rule.substr(m[0].length);
-                }
             }
 
-            var xpath = parts.join("");
-            return xpath;
-        };
+            // Match combinators
+            m = regCombinator.exec(rule);
+            if (m && m[0].length) {
+                if (m[0].indexOf(">") != -1)
+                    parts.push("/");
+                else if (m[0].indexOf("+") != -1)
+                    parts.push("/following-sibling::");
+                else
+                    parts.push("//");
 
-        this.getElementsBySelector = function(doc, css)
-        {
-            var xpath = this.cssToXPath(css);
-            return this.getElementsByXPath(doc, xpath);
-        };
-
-        this.getElementsByXPath = function(doc, xpath)
-        {
-            var nodes = [];
-
-            try {
-                var result = doc.evaluate(xpath, doc, null, XPathResult.ANY_TYPE, null);
-                for (var item = result.iterateNext(); item; item = result.iterateNext())
-                    nodes.push(item);
-            }
-            catch (exc)
-            {
-                // Invalid xpath expressions make their way here sometimes. If that happens,
-                // we still want to return an empty set without an exception.
+                index = parts.length;
+                parts.push("*");
+                rule = rule.substr(m[0].length);
             }
 
-            return nodes;
-        };
+            m = regComma.exec(rule);
+            if (m) {
+                parts.push(" | ", "//", "*");
+                index = parts.length - 1;
+                rule = rule.substr(m[0].length);
+            }
+        }
 
-        this.getRuleMatchingElements = function(rule, doc)
-        {
-            var css = rule.selectorText;
-            var xpath = this.cssToXPath(css);
-            return this.getElementsByXPath(doc, xpath);
-        };
-    }
+        var xpath = parts.join("");
+        return xpath;
+    };
+
+    this.getElementsBySelector = function (doc, css) {
+        var xpath = this.cssToXPath(css);
+        return this.getElementsByXPath(doc, xpath);
+    };
+
+    this.getElementsByXPath = function (doc, xpath) {
+        var nodes = [];
+
+        try {
+            var result = doc.evaluate(xpath, doc, null, XPathResult.ANY_TYPE, null);
+            for (var item = result.iterateNext(); item; item = result.iterateNext())
+                nodes.push(item);
+        }
+        catch (exc) {
+            // Invalid xpath expressions make their way here sometimes. If that happens,
+            // we still want to return an empty set without an exception.
+        }
+
+        return nodes;
+    };
+
+    this.getRuleMatchingElements = function (rule, doc) {
+        var css = rule.selectorText;
+        var xpath = this.cssToXPath(css);
+        return this.getElementsByXPath(doc, xpath);
+    };
+}
 </script>
 <style>
 
-#mouse{
-    background-color: red;
-    width:10px;
-    height: 10px;
-    position:absolute;
-    top:0px;
-    left:0px;
-}
-#log{
-    height: 2000px;
-}
+    #mouse {
+        background-color: red;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    #log {
+        height: 2000px;
+    }
 </style>
 <body>
 <div class="container">
     Record : <span id="recording">ON</span>
-    <input type="button" class="no-record" id="view" value="view" />
-    <input type="button" class="no-record" id="replay" value="replay" />
-    <input type="button" class="no-record" id="init" value="init" />
-    <hr />
+    <input type="button" class="no-record" id="view" value="view"/>
+    <input type="button" class="no-record" id="replay" value="replay"/>
+    <input type="button" class="no-record" id="init" value="init"/>
+    <hr/>
     <div id="mouse"></div>
     <button id="">ok</button>
 
 
-    <table><tr>
-        <td>okok1</td>
-        <td>okok2</td>
-        <td>okok3</td>
-        <td>okok4</td>
-        <td>okok5</td>
-        <td>okok5</td>
-    </tr></table>
+    <table>
+        <tr>
+            <td>okok1</td>
+            <td>okok2</td>
+            <td>okok3</td>
+            <td>okok4</td>
+            <td>okok5</td>
+            <td>okok5</td>
+        </tr>
+    </table>
 
     <ul>
-        <li><input type="checkbox" name="service_choice[]" value="1" onclick="console.log(this);" /></li>
+        <li><input type="checkbox" name="service_choice[]" value="1" onclick="console.log(this);"/></li>
         <li><input type="checkbox" name="service_choice[]" value="2"/></li>
         <li>3</li>
-        <li><input type="radio" name="radipro" value="1" /></li>
-        <li><input type="radio" name="radipro" value="2" /></li>
+        <li><input type="radio" name="radipro" value="1"/></li>
+        <li><input type="radio" name="radipro" value="2"/></li>
         <li>6</li>
     </ul>
 
