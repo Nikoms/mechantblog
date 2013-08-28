@@ -20,9 +20,9 @@ Les patterns de conceptions sont regroupés en 3 catégories:
     *Singleton
     xPrototype -> clone
 - Structure: Organisation de classes et méthodes
-    Adapter
+    * Adapter
     Bridge
-    Composite
+    * Composite
     Decorator
     Facade
     Flyweight
