@@ -23,7 +23,7 @@ Les patterns de conceptions sont regroupés en 3 catégories:
     * Adapter
     Bridge
     * Composite
-    Decorator
+    * Decorator
     Facade
     Flyweight
     Proxy
