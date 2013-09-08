@@ -1,0 +1,56 @@
+Facade as the name suggests means the face of the building. The people walking past the road can only see this glass face of the building. They do not know anything about it, the wiring, the pipes and other complexities. The face hides all the complexities of the building and displays a friendly face.
+
+This is how facade pattern is used. It hides the complexities of the system and provides an interface to the client from where the client can access the system. In Java, the interface JDBC can be called a facade. We as users or clients create connection using the “java.sql.Connection” interface, the implementation of which we are not concerned about. The implementation is left to the vendor of driver.
+
+
+The Bridge Pattern is used to separate out the interface from its implementation. Doing this gives the flexibility so that both can vary independently.
+
+The best example for this is like the electric equipments you have at home and their switches. For e.g., the switch of the fan. The switch is the interface and the actual implementation is the Running of the fan once its switched-on. Still, both the switch and the fan are independent of each other. Another switch can be plugged in for the fan and this switch can be connected to light bulb
+
+
+http://www.codeproject.com/Articles/890/Bridge-Pattern-Bridging-the-gap-between-Interface#Diagram
+
+
+Bridge and Strategy
+
+Often, the Strategy Pattern is confused with the Bridge Pattern. Even though, these two patterns are similar in structure, they are trying to solve two different design problems. Strategy is mainly concerned in encapsulating algorithms, whereas Bridge decouples the abstraction from the implementation, to provide different implementation for the same abstraction.
+
+Bridge and Adapter
+
+The structure of the Adapter Pattern (object adapter) may look similar to the Bridge Pattern. However, the adapter is meant to change the interface of an existing object and is mainly intended to make unrelated classes work together.
+
+
+Pont (Bridge)
+Intention
+Découple une abstraction de sa réalisation afin que les deux puissent être
+modifiées indépendamment de l’autre
+Alias :
+Poignée/Corps (Handler/Body)
+Indications d’utilisation
+I
+éviter un lien définitif entre une abstraction et son implantation
+I
+permettre la spécialisation des abstractions
+et
+des implantations
+I
+un changement de l’implantation ne doit pas avoir d’impact sur les clients
+I
+plusieurs objets partagent la même implantation mais ceci est transparent
+pour les clients (compteur de références)
+Exemples :
+I
+Objets géométriques variés devant être affichés sur différents écrans.
+I
+L’abstraction Voiture doit pouvoir rouler sur une route (implantation).
+Tout type de voiture doit pouvoir rouler sur tout type de route.
+Conséquences :
+I
+découplage entre abstraction et implantation
+I
+capacité d’extension accrue
+I
+dissimulation des détails d’implantation aux clients
+Xavier Crégut (ENSEEIHT)
+NFP121 Programmation Avancés — Patrons de conception(Design Patterns)
+59 / 128

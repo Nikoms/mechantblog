@@ -21,7 +21,7 @@ Les patterns de conceptions sont regroupés en 3 catégories:
     xPrototype -> clone
 - Structure: Organisation de classes et méthodes
     * Adapter
-    Bridge
+    Bridge !
     * Composite
     * Decorator
     Facade

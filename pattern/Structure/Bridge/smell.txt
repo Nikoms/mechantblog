@@ -1,0 +1,9 @@
+Lors de l'abstract factory on a vu qu'avec 2 constructeurs automobiles et 3 types de voitures, nous avions 6 classes. Ce nombre peut potentiellement grimpé de facon exponentielle.
+
+Voiture
+- ToutTerrain
+- Rapide
+
+ConstructeurAutomobile
+- Peugeot
+- Citroen
