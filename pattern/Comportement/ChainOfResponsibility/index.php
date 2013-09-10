@@ -37,4 +37,5 @@ $team1->machin('machin');
  *
  *
  * Reception emails > spam > si pas spam > save in box
+ * Liste des tours avec état de la voiture: trouve moi le premier tour qui a casser la voiture...
  */
