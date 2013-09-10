@@ -14,11 +14,11 @@ Ensemble de problèmes types avec leur solution.
 
 Les patterns de conceptions sont regroupés en 3 catégories:
 - Création: Différentes manières d'instancier et assembler des objets.
-    *AbstractFactory
-    *Builder
-    *FactoryMethod
-    *Singleton
-    xPrototype -> clone
+    * AbstractFactory
+    * Builder
+    * FactoryMethod
+    * Singleton
+    x Prototype -> clone
 - Structure: Organisation de classes et méthodes
     * Adapter
     Bridge !
@@ -26,9 +26,9 @@ Les patterns de conceptions sont regroupés en 3 catégories:
     * Decorator
     Facade
     Flyweight
-    Proxy
+    * Proxy
 - Comportement: Algorithme et communications entre objets
-    ChainOfResponsibility
+    / ChainOfResponsibility
     Command
     Interpreter
     Iterator
@@ -38,4 +38,10 @@ Les patterns de conceptions sont regroupés en 3 catégories:
     State
     Strategy
     TemplateMethod
-    Visitor
+    / Visitor
+
+
+* = ok
+x = pas faire
+! = Aie
+/ = Code fait, mais il faut encore trouver une idée

@@ -1,0 +1,20 @@
+Avant:
+
+for(1->10000){
+    $arbre = new Arbre(ArbreType, $coordRandom);
+    $arbre->affiche();
+}
+
+Après:
+
+for(1->10000){
+    $arbre = ArbreFactory::byType(ArbreType);
+    $arbre->affiche($coordRandom);
+}
+
+ArbreFactory::byType =>
+  if(listOfArbres[type] == null]){
+    listOfArbres[type] = new Arbre(Type);
+  }
+  return listOfArbres[type];
+
