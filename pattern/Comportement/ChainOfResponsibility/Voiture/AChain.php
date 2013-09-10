@@ -21,4 +21,6 @@ abstract class AChain implements IChain
         return $this->next;
     }
 
+
+
 }

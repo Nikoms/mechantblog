@@ -15,3 +15,26 @@ $team1->machin('machin');
 
 
 //Ex: Qui a fait ce développement? Qui prend en charge ce ticket
+
+/**
+ * Plusieurs objets peuvent répondre à une réquete, mais pas tous...
+ * ... Mais on sait pas qui à priori
+ * ... Seulement un répond
+ * L'ensemble des personnes à qui on demande doit être créé dynamiquement
+ *
+ * appeleur et appelant ne se connaissent pas
+ * ceux dans la chaine ne connaissent pas ceux appelés précédemment
+ * Reception pas garantie
+ *
+ * Parfois utilisé avec composite
+ *
+ * Attention aux chaines brisées
+ *
+ * GoG ne renvoit rien, mais beaucoup aime au moins renvoyer un boolean pour savoir si l'action a été exacutée par quelqu'un.
+ *
+ *
+ * meilleur moyen est d'avoir une abstract qui font le test pour savoir s'il y a un suivant, comme ca chaque objet fait uniquement ce qu'il doit et pas savoir qui est le suivant etc etc...
+ *
+ *
+ * Reception emails > spam > si pas spam > save in box
+ */

@@ -11,6 +11,21 @@ Année 70: Premier à parler d'un pattern : Christopher Alexander [http://fr.wik
 Ensemble de problèmes types avec leur solution.
 
 
+- Circuit
+- Voiture
+    - Moteur
+    - Roue
+    - AIleron
+    - Parechocs
+    -
+- Visuel Voiture
+- Equipe
+- Constructeur automobile
+- Supporters
+- Pilote
+- Radio (pilote/équipe/Tv)
+- Commissaire de piste
+
 
 Les patterns de conceptions sont regroupés en 3 catégories:
 - Création: Différentes manières d'instancier et assembler des objets.
