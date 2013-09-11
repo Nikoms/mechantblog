@@ -8,6 +8,12 @@ $exemple = new \Structure\Strategy\Exemple($strategy1);
 $exemple->allo('coucou');
 
 
+
+$exemple = new \Structure\Strategy\Exemple($strategy2);
+
+$exemple->allo('coucou');
+
+
 /**
  * Une requete peut etre faite de plusieurs manière (algo)
  * ALgo peuvent augmenter avec e temps

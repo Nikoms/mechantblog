@@ -12,7 +12,7 @@ namespace Comportement\Strategy\Voiture\Strategy;
 class Strategy1 implements IStrategy {
     public function connect($config)
     {
-        // TODO: Implement connect() method.
+        echo $config. ' 1';
     }
 
     public function query($query)

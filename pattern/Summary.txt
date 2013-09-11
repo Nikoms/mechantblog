@@ -45,13 +45,13 @@ Les patterns de conceptions sont regroupés en 3 catégories:
 - Comportement: Algorithme et communications entre objets
     / ChainOfResponsibility
     Command
-    Interpreter
-    Iterator
+    x Interpreter
+    x Iterator
     Mediator
     Memento
     Observer
-    State
-    Strategy
+    . State
+    / Strategy
     TemplateMethod
     / Visitor
 
