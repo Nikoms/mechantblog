@@ -38,4 +38,6 @@ $team1->machin('machin');
  *
  * Reception emails > spam > si pas spam > save in box
  * Liste des tours avec état de la voiture: trouve moi le premier tour qui a casser la voiture...
+ *
+ * Bcp utiliser avec composite. En effet, on demande plutot à un groupe de personne (qui va faire prendre le premier de la liste ), plutot qu'à une personne.
  */
