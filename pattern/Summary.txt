@@ -60,3 +60,4 @@ Les patterns de conceptions sont regroupés en 3 catégories:
 x = pas faire
 ! = Aie
 / = Code fait, mais il faut encore trouver une idée
+. = Explications pas de code
