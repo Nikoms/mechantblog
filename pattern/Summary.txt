@@ -47,7 +47,7 @@ Les patterns de conceptions sont regroupés en 3 catégories:
     Command
     x Interpreter
     x Iterator
-    Mediator
+    . Mediator
     . Memento
     Observer
     . State
