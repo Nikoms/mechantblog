@@ -3,6 +3,10 @@
  * @author Nicolas De Boose
  *
  *
+ * Exemple :
+ * - Sauvegarde d'une partie
+ * - Sauvegarde des paramètres d'une voiture le samedi soir avant de les reprendre le dimanche matin pour la course
+ * - Agit un peu comme un serialize.
  *
  * Memento stocke un "state" interne d'un AUTRE objet. He oui, c'est pas très sain à la base,...
  *
@@ -62,6 +66,7 @@ cs.solve();
 
 delete memento;
 return 0;
+ *
  *
  *
  */

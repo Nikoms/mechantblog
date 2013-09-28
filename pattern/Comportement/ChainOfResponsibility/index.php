@@ -14,7 +14,13 @@ $team1->machin('chose');
 $team1->machin('machin');
 
 
-//Ex: Qui a fait ce développement? Qui prend en charge ce ticket
+/**
+ * Exemple:
+ * - Qui a fait ce développement? Qui prend en charge ce ticket
+ * - Bof : check tva: d'abord WS puis DB puis regex... Mais ce n'est pasle but du COR
+ * - Je fais exploser une des voitures qui a la bombe installée
+ * - J'envoi ma commande d'une certaine manière en fonction de mon panier (En fonction du poid, du prix, de la rapidité choisie, du client, avion, bateau, fusée, etc)
+ */
 
 /**
  * Plusieurs objets peuvent répondre à une réquete, mais pas tous...

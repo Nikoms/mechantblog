@@ -15,6 +15,11 @@ echo $pneu2->accept($soleilVisitor) . ' VS ' . $pneu2->accept($pluieVisitor);
 
 
 /**
+ * Exemple : poid d'un moteur = nombre de litre dans le reservoir + getPoid + getWeight + getPoids
+ *
+ * Quand on voit un instance of, ca peut peut-être se résoudre par un visiteur.
+ *
+ * DOnne moi tous les roux gros du public: Public recoit un visiteur qui va demander à chaque visiteur s'il est gros et roux... Et rajoute dans le tableau et après le client peut faire visiteur->getList()
  * Double hierarchies completement distinctes
  *
  * Rajoute desoperations sans toucher à la structure

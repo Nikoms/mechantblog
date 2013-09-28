@@ -1,16 +1,6 @@
 Under construction :)
 
 
-Année 70: Premier à parler d'un pattern : Christopher Alexander [http://fr.wikipedia.org/wiki/Christopher_Alexander] dans un livre intitulé "A Pattern Language", pas directement lié à l'informatique.
-1994: Livre sur les patterns par le "Gang of four" [http://c2.com/cgi/wiki?GangOfFour] aussi appelé GoF, (à ne pas confondre avec le groupe de rock [http://en.wikipedia.org/wiki/Gang_of_Four_%28band%29])
-- Erich Gamma
-- Richard Helm
-- Ralph Johnson
-- John Vlissides
-
-Ensemble de problèmes types avec leur solution.
-
-
 - Circuit
 - Voiture
     - Moteur

@@ -7,6 +7,10 @@
  */
 
 /**
+ *
+ * Exemple:
+ * - En formule 1, le boite "noire" qui relie le volant, le moteur et autres. Les infos du moteur passent par le mediateur, pour les retourner vers le volant pour avoir un feedback. Les boutons du volant interagissent aussi avec le mediator pour activer le boost, etc...
+ *
  * Lié des objets entre eux.
  * Ex : field qui change la liste d'un autre ou bien field qui rend un bouton readonly, etc...
  * Intermediaire
