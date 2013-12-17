@@ -1,10 +1,12 @@
 <?php
 
-class JolieAdresse{
+class JolieAdresse
+{
 
 }
 
-class AddresseNormalizer{
+class AddresseNormalizer
+{
     public function __construct($rue, $numero, $codePostal, $ville, $pays)
     {
         $this->rue = $rue;
@@ -31,10 +33,12 @@ class AddresseNormalizer{
 
     private function getGoogleJson()
     {
-        $addresse = $this->rue.' '.$this->numero.', '.$this->codePostal.' '. $this->ville.', ' . $this->pays;
-        $googleUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($addresse) . '&sensor=false';
+        $addresse = $this->rue . ' ' . $this->numero . ', ' . $this->codePostal . ' ' . $this->ville . ', ' . $this->pays;
+        $googleUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode(
+            $addresse
+        ) . '&sensor=false';
 
-        return json_decode(file_get_contents($googleUrl),true);
+        return json_decode(file_get_contents($googleUrl), true);
     }
 }
 
