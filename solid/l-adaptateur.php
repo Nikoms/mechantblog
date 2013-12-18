@@ -1,7 +1,5 @@
 <?php
-/**
- * @author Nicolas De Boose
- */
+namespace Mechant\Solid\Liskov;
 
 //Interface très simplifiée
 interface Voiture
@@ -14,13 +12,14 @@ interface Voiture
 //La Voiture volante, n'a pas la méthode changePneu, et n'est donc pas une voiture
 class VoitureVolante
 {
-    public function avance()
+    //Similaire à "avance" pour une voiture normale
+    public function volePlusVite()
     {
-        echo "La voiture volante avance!";
+        echo "La voiture volante avance/vole plus vite!";
     }
 }
 
-//Mon adaptateur
+//Mon fameux adaptateur
 class VoitureVolanteAdaptateur implements Voiture
 {
     private $voitureVolante;
@@ -32,7 +31,7 @@ class VoitureVolanteAdaptateur implements Voiture
 
     public function avance()
     {
-        $this->voitureVolante->avance();
+        $this->voitureVolante->volePlusVite();
     }
 
     public function changePneu()
