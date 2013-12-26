@@ -13,7 +13,7 @@ interface Emailable
     public function getEmail();
 }
 
-class Contact implements Smsable, Emailable
+class User implements Smsable, Emailable
 {
 
     private $firstName;
@@ -98,3 +98,8 @@ class PubSender
     }
 
 }
+
+$contact = new User();
+$pubSender = new PubSender();
+$pubSender->sendByMail($contact);
+$pubSender->sendBySms($contact);

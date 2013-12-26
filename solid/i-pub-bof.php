@@ -1,7 +1,15 @@
 <?php
 namespace Mechant\Solid\InterfaceNoSegregation;
 
-class Contact
+interface Contact {
+    public function getEmail();
+    public function getFirstName();
+    public function getLastName();
+    public function getPhoneNumber();
+    public function getAddress();
+}
+
+class User implements Contact
 {
 
     private $firstName;

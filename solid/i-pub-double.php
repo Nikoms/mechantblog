@@ -13,7 +13,7 @@ interface Emailable
     public function getEmail();
 }
 
-class Contact implements Smsable, Emailable
+class User implements Smsable, Emailable
 {
 
     private $firstName;
@@ -75,7 +75,7 @@ class Contact implements Smsable, Emailable
 
 class PubSender1
 {
-    public function send(Contact $contact)
+    public function send(User $contact)
     {
         $this->sendByMail($contact);
         $this->sendBySms($contact);
@@ -93,7 +93,7 @@ class PubSender1
     }
 }
 
-$contact1 = new Contact();
+$contact1 = new User();
 $send1 = new PubSender1();
 $send1->send($contact1);
 
@@ -104,7 +104,7 @@ abstract class Contactable implements Emailable, Smsable{
 }
 
 
-class Contact2 extends Contactable{
+class User2 extends Contactable{
     public function getPhoneNumber()
     {
         //...
@@ -143,7 +143,7 @@ class PubSender2
 }
 
 
-$contact2 = new Contact2();
+$contact2 = new User2();
 $send1 = new PubSender2();
 $send1->send($contact2);
 
@@ -169,6 +169,6 @@ class PubSender3
 }
 
 
-$contact3 = new Contact();
+$contact3 = new User();
 $send1 = new PubSender3();
 $send1->send($contact3, $contact3);
